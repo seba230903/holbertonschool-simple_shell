@@ -6,66 +6,69 @@
  *
  *
  */
-char*** stok(char *str, const char *del)
+char** stok(char *str, const char *del)
 {
-	char ***array_of_str;
-	char *str_cp = strdup(str);
-	int i = 0, j = 0, k = 0;
+	int i = 0, j = 0, k = 0, count = 1;
+	char **str_path;
 
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] == del[0])
+		for (j = 0; del[j]; j++)
 		{
-			k++;
-		}
-	}
-
-	array_of_str = malloc(sizeof(char *) * k);
-
-	if(!array_of_str)
-		return (NULL);
-
-	str_cp = strtok(str_cp, del);
-	i = 0;
-	while (str_cp)
-	{
-		array_of_str[i] = malloc(sizeof(char *) * strlen(str_cp));
-		if (!array_of_str[i])
-		{
-			for (;i != 0; i--)
+			if (str[i] == del[j])
 			{
-				free(array_of_str[i]);
-				free(array_of_str);
-				exit(0);
+				count++;
 			}
 		}
-		for (j = 0; *array_of_str[i][j]; j ++)
-		{
-			*array_of_str[i][j] = str_cp[j];
-		}
-		str_cp = strtok(NULL, del);
-		i++;
 	}
 
-	return (array_of_str);
+	str_path = malloc(sizeof(char *) * count);
+
+	if (!str_path)
+		return (NULL);
+
+	for (k = 0; k <= count; k++)
+	{
+		j = 0;
+		i = 0;
+		for (; str[i] && str[i] != del[0]; i++)
+			;
+
+		str_path[k] = malloc (sizeof(char *) * (i + 1));
+
+		if (!(str_path[k]))
+		{
+			for (; k >= 0; k--)
+			{
+				free(str_path[k]);
+			}
+			free(str_path);
+			return (NULL);
+		}
+		for (; str[j] && str[j] != del[0]; j++)
+		{
+			str_path[k][j] = str[j];
+		}
+		str_path[k][j] = '\0';
+	}
+
+	str_path[k] = NULL;
+
+	return (str_path);
 }
-/**
- *
- *
- *
- */
+
 int main(void)
 {
-	char *str = "Hola:COMO:estas:xd";
 	char *del = ":";
-	char ***a_str;
+	char *str = "hola:sebita:estas:sebadito:por:q:si:a:na:ze";
+	char **a_of_str;
+	int i = 0;
 
-	a_str = stok(str, del);
-
-	printf("%s \n", *a_str[0]);
-	printf("%s \n", *a_str[1]);
-	printf("%s \n", *a_str[2]);
-	printf("%s \n", *a_str[3]);
-
-	return (0);
+	a_of_str = stok(str, del);
+	
+	for (; a_of_str[i]; i++)
+	{
+		printf("VALUE OF STR [%d]: %s \n", i, a_of_str[i]);
+	}
+	return (1);
 }

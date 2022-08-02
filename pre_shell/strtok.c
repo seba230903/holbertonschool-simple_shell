@@ -8,33 +8,26 @@
  */
 char** stok(char *str, const char *del)
 {
-	int i = 0, j = 0, k = 0, count = 1;
+	int i = 0, j = 0, k = 0, count = 1, l = 0;
 	char **str_path;
 
 	for (i = 0; str[i]; i++)
-	{
-		for (j = 0; del[j]; j++)
-		{
-			if (str[i] == del[j])
-			{
-				count++;
-			}
-		}
-	}
-
-	str_path = malloc(sizeof(char *) * count);
+		if (str[i] == del[0])
+			count++;
+		
+	str_path = malloc(sizeof(char *) * count + 1);
 
 	if (!str_path)
 		return (NULL);
-
-	for (k = 0; k <= count; k++)
+	i = 0;
+	j = 0;
+	
+	for (k = 0; k < count; k++)
 	{
-		j = 0;
-		i = 0;
 		for (; str[i] && str[i] != del[0]; i++)
 			;
 
-		str_path[k] = malloc (sizeof(char *) * (i + 1));
+		str_path[k] = malloc (sizeof(char) * (i + 1));
 
 		if (!(str_path[k]))
 		{
@@ -45,11 +38,17 @@ char** stok(char *str, const char *del)
 			free(str_path);
 			return (NULL);
 		}
-		for (; str[j] && str[j] != del[0]; j++)
+
+		for (; j <= i; j++, l++)
 		{
-			str_path[k][j] = str[j];
+			str_path[k][l] = str[j];
 		}
-		str_path[k][j] = '\0';
+		str_path[k][l] = '\0';
+
+		j++;
+		i++;
+		l = 0;
+
 	}
 
 	str_path[k] = NULL;
@@ -60,7 +59,7 @@ char** stok(char *str, const char *del)
 int main(void)
 {
 	char *del = ":";
-	char *str = "hola:sebita:estas:sebadito:por:q:si:a:na:ze";
+	char *str = "hola:como:estas:hdp:xd";
 	char **a_of_str;
 	int i = 0;
 

@@ -1,6 +1,6 @@
 # C - simple shell
 
-This project was made at the end of the fisrt trimester in holberton school. The target of this project is to make our own shell.
+This project was made at the end of the fisrt trimester in holberton school. The target of this project is to make our own functional shell.
 
 ## Description
 

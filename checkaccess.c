@@ -4,16 +4,13 @@
  *
  *
  */
-char *checkaccess(char **path_list)
+int checkaccess(char *path)
 {
-	int i = 0;
-
-	for (i = 0; path_list[i]; i++)
+	if (!path)
+		return (0);
+	if (access(path, F_OK) == 0)
 	{
-		if (access(path_list[i], F_OK) == 0)
-		{
-			return (path_list[i]);
-		}
+		return (1);
 	}
-	return (NULL);
+	return (0);
 }

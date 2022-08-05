@@ -42,7 +42,6 @@ int main(void)
 					break;
 			}
 		}
-
 		call_child(f_path, input, path_access);
 	}
 }

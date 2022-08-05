@@ -11,7 +11,7 @@ void call_child(char *path, char **input, int path_access)
 	int status;
 	pid_t pid;
 
-	if (path != NULL && input != NULL)
+	if (path != NULL || input != NULL)
 	{
 		pid = fork();
 

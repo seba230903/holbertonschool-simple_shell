@@ -6,9 +6,9 @@
  * @path_access: if the input[0] is a full path or not
  * Return: void
  */
-void call_child(char *path, char **input, int path_access)
+int call_child(char *path, char **input, int path_access)
 {
-	int status;
+	int status = 0, exit_status;
 	pid_t pid;
 
 	if (path != NULL || input != NULL)
@@ -30,16 +30,24 @@ void call_child(char *path, char **input, int path_access)
 			if (path_access == 1)
 			{
 				if (execve(input[0], input, environ) == -1)
+				{
 					perror("ERROR IN EXECVE");
+				}
 			}
+			
+
 		}
 		else /* WAITS UNTIL THE CHILD PROCCESS HAS FINISHED */
 		{
 			wait(&status);
+			free_array(input);
+			free(path);
+			exit_status = WEXITSTATUS(status);
 		}
 	}
 	else
 	{
 		perror("FUNCTION CALL_CHILD FAIL IN ARGUMENTS");
 	}
+	return(exit_status);
 }

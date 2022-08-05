@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	int i = 0, path_access = 0;
+	int i = 0, path_access = 0, exit_status;
 	size_t len = 0;
 	char *buf = NULL;
 	char *path = NULL;
@@ -16,22 +16,20 @@ int main(void)
 
 	while (1)
 	{
-		printf("cisfun$ ");
-
+		if(isatty(0))
+		{
+			printf("cisfun$ ");
+		}
 		if (getline(&buf, &len, stdin) == -1)
 		{
-			free(buf);
-			return (1);
+			exit(0);
 		}
-		/* REMOVE THE BLANCK-LINE */
 		buf = strtok(buf, "\n");
-		/* GETTING THE PATH */
+		
 		path = getpath("PATH");
 
-		/* DIVIDE THE BUF IN A ARRAY OF STRING */
 		input = stok(buf, " ");
-
-		/* DIVIDE THE PATH VAIABLE BY DIRECTORIES */
+		
 		path_list = stok(path, ":");
 
 		path_access = checkpath(input[0]);
@@ -45,11 +43,9 @@ int main(void)
 					break;
 			}
 		}
-		printf("\n%s\n%s\n%d\n", f_path, input[0], path_access);
-		for(i = 0; input[i]; i++)
-		{
-			printf("\n%s\n", input[i]);
-		}
-		call_child(f_path, input, path_access);
+		free_array(path_list);
+		free(path);
+		exit_status = call_child(f_path, input, path_access);
 	}
+	return(exit_status);
 }

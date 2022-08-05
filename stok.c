@@ -30,12 +30,11 @@ int count_argument(char *str, const char *del)
 char **stok(char *str, const char *del)
 {
 	char **array = NULL;
-	int i = 0, count;
+	int i = 0;
 	char *str_dup = NULL;
 	char *actual_str = NULL;
 
-	count = count_argument(str, del);
-	array = malloc(count + 1);
+	array = malloc(1024);
 
 	if (!array)
 		return (NULL);
@@ -55,5 +54,6 @@ char **stok(char *str, const char *del)
 		actual_str = strtok(NULL, del);
 	}
 	array[i] = NULL;
+	free(str_dup);
 	return (array);
 }

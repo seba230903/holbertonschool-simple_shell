@@ -14,9 +14,9 @@ char *_strcat(char *dest, char *src);
 
 char **stok(char *str, const char *del);
 char *getpath(char *str);
-int checkpath (char *first_input);
+int checkpath(char *first_input);
 char *concat_command(char *path, char *command);
 int checkaccess(char *f_path);
-void call_child (char *path, char **intput, int path_access);
+void call_childi(char *path, char **intput, int path_access);
 
 #endif

@@ -31,7 +31,7 @@ char **stok(char *str, const char *del)
 {
 	char **array = NULL;
 	int i = 0, count;
-	char *str_dup;
+	char *str_dup = NULL;
 	char *actual_str = NULL;
 
 	count = count_argument(str, del);

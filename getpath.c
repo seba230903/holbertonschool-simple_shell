@@ -23,7 +23,7 @@ char *getpath(char *str)
 		if (count == _strlen(str))
 		{
 			len = _strlen(environ[i]);
-			str_aux = malloc((len - count + 1));
+			str_aux = malloc((len - (count + 1)));
 
 			for (j = (count + 1); environ[i][j]; j++, k++)
 			{

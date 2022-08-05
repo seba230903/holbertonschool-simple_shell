@@ -19,7 +19,10 @@ int main(void)
 		printf("cisfun$ ");
 
 		if (getline(&buf, &len, stdin) == -1)
+		{
+			free(buf);
 			return (1);
+		}
 		/* REMOVE THE BLANCK-LINE */
 		buf = strtok(buf, "\n");
 		/* GETTING THE PATH */
@@ -41,6 +44,11 @@ int main(void)
 				if (checkaccess(f_path) == 1)
 					break;
 			}
+		}
+		printf("\n%s\n%s\n%d\n", f_path, input[0], path_access);
+		for(i = 0; input[i]; i++)
+		{
+			printf("\n%s\n", input[i]);
 		}
 		call_child(f_path, input, path_access);
 	}

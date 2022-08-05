@@ -18,5 +18,5 @@ int checkpath(char *first_input);
 char *concat_command(char *path, char *command);
 int checkaccess(char *f_path);
 void call_child(char *path, char **intput, int path_access);
-
+void free_array(char **in);
 #endif

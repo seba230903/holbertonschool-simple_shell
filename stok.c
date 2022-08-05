@@ -1,9 +1,10 @@
 #include "main.h"
 /**
+ * count_argument - count amount of argument in str
  *
- *
- *
- *
+ * @str: is str to tokenize
+ * @del: the delimiter of the tokens
+ * Return: a count of arguments
  */
 int count_argument(char *str, const char *del)
 {
@@ -20,9 +21,11 @@ int count_argument(char *str, const char *del)
 	return (count);
 }
 /**
+ * stok - tokenize str for the delimiter del and save the tokens in an array
  *
- *
- *
+ * @str: is a str to tokenize
+ * @del: delimiter
+ * Return: an array of tokens(strings)
  */
 char **stok(char *str, const char *del)
 {

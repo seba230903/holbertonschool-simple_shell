@@ -1,8 +1,9 @@
 #include "main.h"
 /**
+ * getpath - get a environment variable of the extern variable environ
  *
- *
- *
+ * @str: the variable to search
+ * Return: the environment variable found
  */
 char *getpath(char *str)
 {

@@ -1,25 +1,25 @@
 #include "main.h"
 /**
+ * main - Run the shell
  *
- *
- *
+ * Return: 0 in success
  */
 int main(void)
 {
 	int i = 0, path_access = 0;
-       	size_t len = 0;
+	size_t len = 0;
 	char *buf = NULL;
 	char *path = NULL;
 	char **path_list = NULL;
 	char **input = NULL;
 	char *f_path = NULL;
 
-	while(1)
+	while (1)
 	{
 		printf("cisfun$ ");
 
 		if (getline(&buf, &len, stdin) == -1)
-			return(1);
+			return (1);
 		/* REMOVE THE BLANCK-LINE */
 		buf = strtok(buf, "\n");
 		/* GETTING THE PATH */
@@ -29,11 +29,11 @@ int main(void)
 		input = stok(buf, " ");
 
 		/* DIVIDE THE PATH VAIABLE BY DIRECTORIES */
-		path_list = stok(path, ":");	
-		
+		path_list = stok(path, ":");
+
 		path_access = checkpath(input[0]);
 
-		if(path_access == 0)
+		if (path_access == 0)
 		{
 			for (i = 0; path_list[i]; i++)
 			{
@@ -44,5 +44,5 @@ int main(void)
 		}
 
 		call_child(f_path, input, path_access);
-	}	
+	}
 }

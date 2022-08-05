@@ -1,7 +1,10 @@
 #include "main.h"
 /**
+ * concat_command - concatenate the path + / + the command
  *
- *
+ * @path: the path ej: /bin
+ * @command: a command ej: ls
+ * Return: the resulting string ej: /bin/ls
  */
 char *concat_command(char *path, char *command)
 {

@@ -1,8 +1,10 @@
 #include "main.h"
 /**
- *
- *
- *
+ * call_child - execute fork, execve and wait
+ * @path: the full path to execute the command
+ * @input: all the geted inputs
+ * @path_access: if the input[0] is a full path or not
+ * Return: void
  */
 void call_child(char *path, char **input, int path_access)
 {
@@ -29,7 +31,7 @@ void call_child(char *path, char **input, int path_access)
 			{
 				if (execve(input[0], input, environ) == -1)
 					perror("ERROR IN EXECVE");
-			}	
+			}
 		}
 		else /* WAITS UNTIL THE CHILD PROCCESS HAS FINISHED */
 		{

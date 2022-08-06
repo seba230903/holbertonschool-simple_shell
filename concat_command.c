@@ -29,6 +29,5 @@ char *concat_command(char *path, char *command)
 		full_path[j] = command[i];
 
 	full_path[j] = '\0';
-
 	return (full_path);
 }

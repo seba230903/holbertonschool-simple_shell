@@ -9,21 +9,21 @@ int main(void)
 {
 	int i = 0, path_access = 0, exit_status;
 	size_t len = 0;
-	char *buf = NULL;
-	char *path = NULL;
-	char **path_list = NULL;
-	char **input = NULL;
-	char *f_path = NULL;
+	char *buf = NULL, *path = NULL, *f_path = NULL;
+	char **input = NULL, **path_list = NULL;
 
 	while (1)
 	{
 		if(isatty(0))
-		{
 			printf("cisfun$ ");
-		}
 		if (getline(&buf, &len, stdin) == -1)
+		{
+			free(buf);
 			exit(0);
-		buf = strtok(buf,"\n");	
+		}
+
+		buf = strtok(buf,"\n");
+		printf("%s", buf);
 		path = getpath("PATH");
 		input = stok(buf, " ");
 		path_list = stok(path, ":");
@@ -39,11 +39,9 @@ int main(void)
 			}
 		}
 
-		free(path);
-		free_array(path_list);
 		exit_status = call_child(f_path, input, path_access);
-		free_array(input);
-		free(f_path);
+		free_array(input), free_array(path_list);
+		free(f_path), free(path);
 	}
 	return(exit_status);
 }

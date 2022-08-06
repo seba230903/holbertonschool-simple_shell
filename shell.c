@@ -23,7 +23,6 @@ int main(void)
 		}
 
 		buf = strtok(buf,"\n");
-		printf("%s", buf);
 		path = getpath("PATH");
 		input = stok(buf, " ");
 		path_list = stok(path, ":");
